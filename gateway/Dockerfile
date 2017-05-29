@@ -1,4 +1,5 @@
 # Copyright (C) 2017 Peter Robinson
+# Docker file used to build code.
 
 FROM golang
 MAINTAINER Peter Robinson <peter@nelladragon.com>
