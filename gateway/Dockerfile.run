@@ -1,12 +1,14 @@
 # Copyright (C) 2017 Peter Robinson
 # Docker file used for creating run-time docker image.
 # Use a minimalist base image.
-FROM busybox
+FROM scratch
 MAINTAINER Peter Robinson <peter@nelladragon.com>
 
 # Put in the settings file needed at runtime.
-RUN mkdir /etc/gateway
-ADD settings.json /etc/gateway
+ADD settings.json /etc/gateway/
+
+# Put in trusted anchors / certificates.
+#ADD ca-certificates.crt /etc/ssl/certs/
 
 # Add the binary
 ADD gateway /
