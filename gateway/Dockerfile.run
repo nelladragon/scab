@@ -1,0 +1,16 @@
+# Copyright (C) 2017 Peter Robinson
+# Use a minimalist base image.
+FROM busybox
+MAINTAINER Peter Robinson <peter@nelladragon.com>
+
+# Put in the settings file needed at runtime.
+RUN mkdir /etc/gateway
+ADD settings.json /etc/gateway
+
+# Add the binary
+ADD gateway /
+
+# Run the binary when the container starts.
+WORKDIR /
+CMD ["/gateway"]
+EXPOSE 8080 

@@ -1,0 +1,5 @@
+{
+    "bindrestapi" : "8080",
+    "bindhttps" : "4443"
+
+}
