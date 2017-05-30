@@ -5,7 +5,7 @@
 # Usage:
 #   [VERSION=v3] [REGISTRY="gcr.io/google_containers"] make build
 VERSION?=v1
-REGISTRY?=gcr.io/google_containers
+REGISTRY?=gcr.io/smart-contract-app-browser
 
 release: clean build push clean
 
