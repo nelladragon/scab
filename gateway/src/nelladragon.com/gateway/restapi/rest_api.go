@@ -100,7 +100,7 @@ func getIp(w rest.ResponseWriter, r *rest.Request) {
 }
 
 func showId(w rest.ResponseWriter, r *rest.Request) {
-	w.WriteJson("ETH_GATEWAY_WORKER")
+	w.WriteJson("GATEWAY")
 }
 
 

@@ -93,7 +93,7 @@ func getKeyValues(w rest.ResponseWriter, r *rest.Request) {
 
 
 func getStorage() storage.Storage {
-	store := storage.GetSingleInstance(storage.Mongo)
+	store := storage.GetSingleInstance(storage.Redis)
 	return *store
 }
 

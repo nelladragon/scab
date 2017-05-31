@@ -25,6 +25,7 @@ type StorageType int
 const (
 	KeyValue StorageType = iota //1
 	Mongo // 2
+	Redis // 3
 )
 
 func (t StorageType) String() string {
@@ -33,6 +34,9 @@ func (t StorageType) String() string {
 		return "Key Value"
 	case Mongo:
 		return "Mongo"
+	case Redis:
+		return "Redis"
+
 	default:
 		panic("unrecognized storage type")
 	}
@@ -47,6 +51,8 @@ func GetSingleInstance(t StorageType) *Storage {
 		s = GetKeyValueStorage()
 	case Mongo:
 		s = GetMongoStorage()
+	case Redis:
+		s = GetRedisStorage()
 	default:
 		panic("unrecognized storage type")
 	}
