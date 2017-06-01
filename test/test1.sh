@@ -1,8 +1,8 @@
 #!/bin/sh
 # Exercise the REST API
 
-# PROXY_SERVER="192.168.99.100"
-PROXY_SERVER="35.185.244.169"
+PROXY_SERVER="192.168.99.100"
+# PROXY_SERVER="35.185.244.169"
 RESTAPI_PORT="80"
 BASEURI="http://"$PROXY_SERVER:$RESTAPI_PORT
 
@@ -59,3 +59,10 @@ echo GET /value
 curl $BASEURI/value
 echo 
 echo 
+
+
+
+echo GET /eth/getbalance?Account=15948b41a283f22f6782f840fbfc520de38406f4
+curl $BASEURI/eth/getbalance?Account=15948b41a283f22f6782f840fbfc520de38406f4
+echo 
+echo

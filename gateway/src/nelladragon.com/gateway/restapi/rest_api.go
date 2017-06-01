@@ -46,6 +46,8 @@ func startRestApi(settings internal.AppSettings, errChannel chan<- error) {
 
 		rest.Post("/value", setValue),			// Set a value.
 		rest.Get("/value", getKeyValues),		// Get a value given a key or a list of all the keys.
+
+		rest.Get("/eth/getbalance", getEthBalance),
 	)
 	if err != nil {
 		log.Fatal(err)
