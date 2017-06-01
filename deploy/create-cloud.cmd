@@ -1,8 +1,11 @@
 REM Based on https://cloud.google.com/container-engine/docs/tutorials/guestbook
-gcloud container clusters create gateway --num-nodes=3
+call gcloud container clusters create gateway --num-nodes=3
 
-REM should I need to do this?
-gcloud container clusters get-credentials gateway
+REM Do I need to do this each time?
+call gcloud container clusters get-credentials gateway
 
-kubectl create -f gateway-deployment.yaml
-kubectl create -f gateway-service.yaml
+call kubectl create -f redis-master-deployment.yaml
+call kubectl create -f redis-master-service.yaml
+
+call kubectl create -f gateway-deployment.yaml
+call kubectl create -f gateway-service.yaml

@@ -1,0 +1,55 @@
+# 
+version: '2'
+
+services:
+ gateway:
+#  image: scab-gateway:v1
+  image: gcr.io/smart-contract-app-browser/scab-gateway:v1
+  depends_on:
+   - redis_master
+  ports:
+   - "80:80"
+  networks:
+   - cloud
+
+ redis_master:
+  image: redis
+  hostname: redis-master
+  container_name: redis_master
+  ports:
+   - "6379:6379"
+  networks:
+    cloud:
+      aliases:
+       - redis
+
+ ethereum:
+   image: ethereum/client-go
+   hostname: ethereum
+   container_name: ethereum-node
+   ports: 
+    - "8545:8545"
+    - "30303:30303"
+   volumes:
+    - ~/.rinkeby:/data
+#   entrypoint: ["ls", "-al", "/data"]
+   entrypoint: ["geth", "--rinkeby", "--datadir=/data", "--syncmode=light", "--rpc", "--ipcdisable"]
+
+ dbg:
+  image: busybox
+  #image: radial/busyboxplus:curl
+  container_name: dbg
+#  depends_on:
+#   - eth_gateway_worker
+#   - eth_gateway_mongodb
+#   - player
+  stdin_open: true
+  tty: true
+  networks:
+    cloud:
+      aliases:
+       - dbg
+
+
+networks:
+ cloud:
