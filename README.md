@@ -9,16 +9,16 @@ The keys used to identify the user sit outside of the sandbox. When the SCAB int
 The goals of the SCAB are:
 
 * Simpler creation process: Make it simpler for authors of a Smart Contract Applications to create and deploy new applications.
- * Problem: Smart Contract Application development is extremely complex and requires the development of mobile applications for each supported end-point. 
- * Goal: Allow technical people to create new applications without having to completely re-create mobile apps / client side pieces for each and every new application.
- * Goal: Allow non-technical people to create and deploy new applications based on a template.
+  * Problem: Smart Contract Application development is extremely complex and requires the development of mobile applications for each supported end-point. 
+  * Goal: Allow technical people to create new applications without having to completely re-create mobile apps / client side pieces for each and every new application.
+  * Goal: Allow non-technical people to create and deploy new applications based on a template.
 * Limited access to keys:
- * Problem: All application end points currently need direct access to cryptographic keys. The keys must be manually shared between applications and end points. Manually sharing keys across many end points and applications risks key exposure.
- * Goal: Have Smart Contract Application clients run in a sandbox, and have them access keys via the sandbox. Allow multiple applications use the same sandbox.
- * Goal: Have keys shared securely between devices. 
+  * Problem: All application end points currently need direct access to cryptographic keys. The keys must be manually shared between applications and end points. Manually sharing keys across many end points and applications risks key exposure.
+  * Goal: Have Smart Contract Application clients run in a sandbox, and have them access keys via the sandbox. Allow multiple applications use the same sandbox.
+  * Goal: Have keys shared securely between devices. 
 * Complex security issues abstracted way from general application developers. This is the same problem as the limiting access to keys, but from a different perspective. 
- * Problem: In general, application developers do not have the expertise to make sound cryptographic and security decisions. Complex problems such as secure sharing of keys between devices, locking keys to hardware, and, choice of TLS configuration are unlikely to be fully addressed by application developers.
- * Goal: Develop a single application which solves complex security issues for application developers.
+  * Problem: In general, application developers do not have the expertise to make sound cryptographic and security decisions. Complex problems such as secure sharing of keys between devices, locking keys to hardware, and, choice of TLS configuration are unlikely to be fully addressed by application developers.
+  * Goal: Develop a single application which solves complex security issues for application developers.
 
 Further requirements:
 
