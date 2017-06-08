@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.nelladragon.showertimertalking.TutorialActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.nelladragon.common.coaching.CoachmarkArrow
+            xmlns:coachmark="http://schemas.android.com/apk/res/com.nelladragon.showertimertalking"
+            android:id="@+id/coachMenu"
+            android:layout_height="700dp"
+            android:layout_width="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            coachmark:linewidth="5dp"
+            coachmark:col="@android:color/white"
+            coachmark:fromx="1.0"
+            coachmark:fromy="0.8"
+            coachmark:midx="0.4"
+            coachmark:midy="0.7"
+            coachmark:tox="0.2"
+            coachmark:toy="0.1"
+            coachmark:arrow1x="0.1"
+            coachmark:arrow1y="0.15"
+            coachmark:arrow2x="0.3"
+            coachmark:arrow2y="0.15"
+            />
+
+        <TextView
+            android:id="@+id/textViewTutIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tutorial_intro"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_size"/>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_toEndOf="@+id/coachMenu"
+            android:layout_below="@+id/textViewTutIntro"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <com.nelladragon.common.coaching.CoachmarkArrow
+                    xmlns:coachmark="http://schemas.android.com/apk/res/com.nelladragon.showertimertalking"
+                    android:id="@+id/coachButton"
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_marginStart="@dimen/tut_land_start_margin"
+
+                    coachmark:linewidth="5dp"
+                    coachmark:col="@android:color/white"
+                    coachmark:fromx="1"
+                    coachmark:fromy="0.5"
+                    coachmark:tox="0.1"
+                    coachmark:toy="0.5"
+                    coachmark:arrow1x="0.4"
+                    coachmark:arrow1y="0.25"
+                    coachmark:arrow2x="0.4"
+                    coachmark:arrow2y="0.75"
+                    />
+
+                <TextView
+                    android:id="@+id/textViewTutStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tutorial_start"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewTutMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tut_land_menu_margin"
+                android:text="@string/tutorial_menu"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

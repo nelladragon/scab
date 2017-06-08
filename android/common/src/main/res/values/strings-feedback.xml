@@ -1,0 +1,28 @@
+<resources>
+    <string name="feedback_intro">Please fill out the form below and click send. You
+will be asked to choose an email program to use to send the feedback.
+If you have encountered a problem, then it would be great if you kept the tick
+boxes below checked. This will provide me with additional information which might
+help me determine the cause of the problem.</string>
+
+    <string name="feedback_device_info">Device Info: Android version, screen size, language capabilities.</string>
+    <string name="feedback_user_info">Profile Info: Details of profile configuration.</string>
+    <string name="feedback_log">App Auto Analysis: Self-analysis to diagnose problems.</string>
+    <string name="feedback_problem">Your Feedback</string>
+    <string name="feedback_send">SEND</string>
+
+    <string name="feedback_email_intro1">Hi Peter,\nHere is some feedback on\u0020</string>
+    <string name="feedback_email_intro2">\u0020(Android):\u0020</string>
+    <string name="feedback_email_redacted">Redacted</string>
+    <string name="feedback_email_device_info">Device Info:\u0020</string>
+    <string name="feedback_email_user_info">Profile Info:\u0020</string>
+    <string name="feedback_email_log">App Auto Analysis:\u0020</string>
+    <string name="feedback_email_problem">Feedback:\u0020</string>
+
+    <string name="feedback_email_address">apps@nelladragon.com</string>
+    <string name="feedback_email_subject1">Feedback on\u0020</string>
+    <string name="feedback_email_subject2">\u0020(Android):\u0020</string>
+
+    <string name="feedback_email_intentinfo">Choose email app to send feedback</string>
+    <string name="feedback_email_intenterror">No email clients found</string>
+</resources>

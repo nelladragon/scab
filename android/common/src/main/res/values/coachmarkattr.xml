@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<declare-styleable name="CoachmarkArrow">
+    <attr name="linewidth" format="dimension" />
+    <attr name="col" format="color" />
+
+    <attr name="fromx" format="float"/>
+    <attr name="fromy" format="float"/>
+    <attr name="midx" format="float"/>
+    <attr name="midy" format="float"/>
+    <attr name="tox" format="float"/>
+    <attr name="toy" format="float"/>
+
+    <attr name="arrow1x" format="float"/>
+    <attr name="arrow1y" format="float"/>
+    <attr name="arrow2x" format="float"/>
+    <attr name="arrow2y" format="float"/>
+
+</declare-styleable>
+</resources>

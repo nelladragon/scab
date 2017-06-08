@@ -1,0 +1,175 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.nelladragon.showertimertalking.SettingsConfigFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewProfileNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/profile_name_title"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <EditText
+                android:id="@+id/editTextProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textViewProfileNameTitle"
+                android:text="."
+                android:maxLength="50"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutProfilePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewProfilePhotoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_photo_title"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textViewProfilePhotoSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textViewProfilePhotoTitle"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <ImageView
+                android:id="@+id/buttonPhoto"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/button_triangle"/>
+
+            <ImageView
+                android:id="@+id/imageViewProfilePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/buttonPhoto"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewProfileDescTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/profile_desc_title"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <EditText
+                android:id="@+id/editTextProfileDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textViewProfileDescTitle"
+                android:text=""
+                android:maxLength="50"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewProfileSocialTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/profile_social_title"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <Button
+                android:id="@+id/buttonProfileFromFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textViewProfileSocialTitle"
+                android:paddingLeft="@dimen/settings_padding_horizontal"
+                android:paddingRight="@dimen/settings_padding_horizontal"
+                android:paddingTop="@dimen/settings_padding_vertical"
+                android:paddingBottom="@dimen/settings_padding_vertical"
+                android:layout_marginTop="@dimen/settings_margin_vertical"
+                android:text="@string/profile_from_facebook_button"
+                android:background="@drawable/button_facebook"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <Button
+                android:id="@+id/buttonProfileFromGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/buttonProfileFromFacebook"
+                android:paddingLeft="@dimen/settings_padding_horizontal"
+                android:paddingRight="@dimen/settings_padding_horizontal"
+                android:paddingTop="@dimen/settings_padding_vertical"
+                android:paddingBottom="@dimen/settings_padding_vertical"
+                android:layout_marginTop="@dimen/settings_margin_vertical"
+                android:text="@string/profile_from_google_button"
+                android:background="@drawable/button_google"
+                android:textColor="@color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </RelativeLayout>
+            </LinearLayout>
+    </ScrollView>
+</LinearLayout>

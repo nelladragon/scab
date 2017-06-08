@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Shower Timer Talking</string>
+    <string name="app_name1">Shower</string>
+    <string name="app_name2">Timer</string>
+    <string name="app_name3">Talking</string>
+
+    <string name="action_add_profile">Add Profile</string>
+    <string name="action_switch_profile">Switch Profile</string>
+    <string name="action_delete_profile">Remove Profile</string>
+
+    <string name="title_activity_shower_on">Shower Timer Talking</string>
+    <string name="title_activity_choose_language">Choose Language</string>
+
+
+</resources>

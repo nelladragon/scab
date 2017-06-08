@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SettingsActivity">
+
+    <item android:id="@+id/action_add"
+        android:title="@string/action_add_profile"
+        android:orderInCategory="100"/>
+
+    <item android:id="@+id/action_switch"
+        android:title="@string/action_switch_profile"
+        android:orderInCategory="200"/>
+
+    <item android:id="@+id/action_delete"
+        android:title="@string/action_delete_profile"
+        android:orderInCategory="300"
+        app:showAsAction="never" />
+</menu>

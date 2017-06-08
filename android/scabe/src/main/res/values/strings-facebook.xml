@@ -1,0 +1,9 @@
+<resources>
+    <string name="facebook_app_id">638706929565473</string>
+
+    <string name="facebook_intro">Use your Facebook profile photo and user name?</string>
+    <string name="facebook_tracking">Keep photo in sync with facebook</string>
+    <string name="facebook_button_use_profile_ack">YES</string>
+    <string name="facebook_error">Sorry! Can\'t access Facebook</string>
+    <string name="facebook_button_switch">Switch User / Re-Login</string>
+</resources>

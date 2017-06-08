@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.nelladragon.showertimertalking.SettingsConfigFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewTimerIntro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/settings_time"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/settings_padding_horizontal"
+                android:paddingRight="@dimen/settings_padding_horizontal"
+                android:paddingTop="@dimen/settings_padding_vertical"
+                android:paddingBottom="@dimen/settings_padding_vertical"
+                android:layout_marginTop="@dimen/settings_margin_vertical"
+                android:layout_below="@+id/textViewTimerIntro"
+                android:background="@drawable/seekbarback"/>
+
+            <TextView
+                android:id="@+id/textViewChronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/settings_padding_horizontal"
+                android:paddingRight="@dimen/settings_padding_horizontal"
+                android:paddingTop="@dimen/settings_padding_vertical"
+                android:paddingBottom="@dimen/settings_padding_vertical"
+                android:layout_marginTop="@dimen/settings_margin_vertical"
+                android:layout_below="@+id/seekBar"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/chronometer_background"
+                android:textSize="@dimen/text_size"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:orientation="vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_options"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_options_attitude"
+                android:id="@+id/checkBoxAttitude" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_options_humour"
+                android:id="@+id/checkBoxHumour" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_options_thoughts"
+                android:id="@+id/checkBoxThoughts" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewLanguageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/setting_language_title"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <ImageView
+                android:id="@+id/buttonPhoto"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/button_triangle"/>
+
+
+            <TextView
+                android:id="@+id/textViewLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewLanguageTitle"
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/settings_padding_horizontal"
+                android:paddingRight="@dimen/settings_padding_horizontal"
+                android:paddingTop="@dimen/settings_padding_vertical"
+                android:paddingBottom="@dimen/settings_padding_vertical"
+                android:text="Replace Me"
+                android:textColor="@color/red"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:background="@drawable/seekbarback"/>
+
+
+        </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

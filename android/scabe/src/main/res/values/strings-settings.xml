@@ -1,0 +1,47 @@
+<resources>
+    <string name="settings_header_profile">Profile</string>
+    <string name="settings_header_conf">Configuration</string>
+
+    <string name="profile_name_title">Name</string>
+    <string name="profile_photo_title">Photo</string>
+    <string name="profile_desc_title">Description</string>
+    <string name="profile_social_title">Load name and photo from social networks</string>
+
+    <string name="profile_from_facebook_button">Use Facebook Profile</string>
+    <string name="profile_from_google_button">Use Google Profile</string>
+    <string name="profile_choose_photo_button">Take Photo or Choose Gallery</string>
+    <string name="title_activity_choose_photo">Choose Photo</string>
+
+    <string-array name="profile_photo_descriptions">
+        <item>Old</item>
+        <item>Kittens</item>
+        <item>Mask</item>
+        <item>Dog</item>
+        <item>Bicycle</item>
+        <item>Flower</item>
+    </string-array>
+    <string name="profile_photo_desc_6">Flower</string>
+
+    <string-array name="profile_photo_drawable_name">
+        <item>user_icon_1</item>
+        <item>user_icon_2</item>
+        <item>user_icon_3</item>
+        <item>user_icon_4</item>
+        <item>user_icon_5</item>
+        <item>user_icon_6</item>
+    </string-array>
+    <string name="profile_photo_6">user_icon_6</string>
+
+
+    <!-- Old Strings related to Settings -->
+
+    <!-- Example General settings -->
+
+
+    <string name="settings_time">Shower Time</string>
+    <string name="settings_options">Speaking Options</string>
+    <string name="settings_options_attitude">With attitude</string>
+    <string name="settings_options_humour">Add some humour</string>
+    <string name="settings_options_thoughts">Add some thoughts</string>
+    <string name="setting_language_title">Language</string>
+</resources>

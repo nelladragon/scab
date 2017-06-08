@@ -1,0 +1,42 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nelladragon.common">
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application android:allowBackup="true" android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <activity
+            android:name="com.nelladragon.common.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+        <activity
+            android:name="com.nelladragon.common.FeedbackActivity"
+            android:label="@string/title_activity_feedback"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.RateActivity"
+            android:label="@string/title_activity_rate"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.DonateActivity"
+            android:label="@string/title_activity_donate"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.ThankyouActivity"
+            android:label="@string/title_activity_thankyou"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+    </application>
+</manifest>

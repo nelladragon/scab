@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_feedback"
+        tools:context="com.nelladragon.showertimertalking.FeedbackActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/feedback_intro"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <CheckBox
+                android:id="@+id/checkboxDeviceInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_device_info"
+                android:checked="true"/>
+
+            <CheckBox
+                android:id="@+id/checkboxUserInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_user_info"
+                android:checked="true"/>
+
+            <CheckBox
+                android:id="@+id/checkboxLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_log"
+                android:checked="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/settings_padding_horizontal"
+            android:paddingRight="@dimen/settings_padding_horizontal"
+            android:paddingTop="@dimen/settings_padding_vertical"
+            android:paddingBottom="@dimen/settings_padding_vertical"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:background="@drawable/rect_black_stroke_white_fill">
+
+            <TextView
+                android:id="@+id/textViewMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_problem"
+                android:labelFor="@+id/editTextFeedback"/>
+            <EditText
+                android:id="@+id/editTextFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:imeOptions="actionSend"/>
+        </LinearLayout>
+        <!--        android:lines="5"
+                android:scrollbars="vertical"-->
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/settings_margin_vertical"
+            android:text="@string/feedback_send"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+</ScrollView>

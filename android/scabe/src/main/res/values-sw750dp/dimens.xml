@@ -1,0 +1,10 @@
+<resources>
+    <!-- 9" tablets and bigger -->
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+
+
+    <dimen name="tut_menu_margin">190dp</dimen>
+    <dimen name="tut_land_menu_margin">320dp</dimen>
+    <dimen name="tut_land_start_margin">400dp</dimen>
+
+</resources>

@@ -1,0 +1,26 @@
+<resources>
+    <!-- 7" tablets -->
+
+    <dimen name="activity_horizontal_margin">20dp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
+    <dimen name="chronometer_padding">20dp</dimen>
+    <dimen name="chronometer_text_size">130sp</dimen>
+    <dimen name="button_text_size">120sp</dimen>
+
+
+    <dimen name="text_size_splash">60sp</dimen>
+    <dimen name="title_size">60sp</dimen>
+    <dimen name="text_size_large">120sp</dimen>
+    <dimen name="text_size">40sp</dimen>
+    <dimen name="small_text_size">30sp</dimen>
+
+
+    <dimen name="text_margin">20dp</dimen>
+
+
+    <dimen name="tut_menu_margin">90dp</dimen>
+    <dimen name="tut_land_menu_margin">180dp</dimen>
+    <dimen name="tut_land_start_margin">350dp</dimen>
+
+
+</resources>
