@@ -11,7 +11,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_info_from_google"
-    tools:context="com.nelladragon.showertimertalking.InfoFromGoogleActivity">
+    tools:context="com.nelladragon.scab.InfoFromGoogleActivity">
 
     <TextView
         android:id="@+id/textViewGoogleIntro"

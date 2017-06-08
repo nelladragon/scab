@@ -11,7 +11,7 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.nelladragon.util.crypto.Rand;
+import com.nelladragon.common.crypto.Rand;
 
 /**
  * Displays fireworks.

@@ -1,1 +1,40 @@
-{"project_info":{"project_id":"shower-timer-talking","project_number":"907282499227","name":"Shower Timer Talking"},"client":[{"client_info":{"mobilesdk_app_id":"1:907282499227:android:225f595c5af59573","client_id":"android:com.nelladragon.showertimertalking","client_type":1,"android_client_info":{"package_name":"com.nelladragon.showertimertalking"}},"oauth_client":[{"client_id":"907282499227-h7vjtl9p88k16mbkp387fm2c99i800pm.apps.googleusercontent.com","client_type":1,"android_info":{"package_name":"com.nelladragon.showertimertalking","certificate_hash":"7C3F5B0EE44E9CF2CA03EF7A900AE33F2533F6FE"}}],"api_key":[],"services":{"analytics_service":{"status":1},"cloud_messaging_service":{"status":1,"apns_config":[]},"appinvite_service":{"status":1,"other_platform_oauth_client":[]},"google_signin_service":{"status":2},"ads_service":{"status":1}}}],"client_info":[],"ARTIFACT_VERSION":"1"}
+{
+  "project_info": {
+    "project_number": "51968373219",
+    "project_id": "firebase-smart-contract-app-br"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51968373219:android:48229a990bda41fe",
+        "android_client_info": {
+          "package_name": "com.nelladragon.scab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51968373219-nt6juqvln0t5jlcfl86erg1m9vqfdr9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9zv4iLcFKaLqbw3nOdUgJN__lkF0szuc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

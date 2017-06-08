@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.nelladragon.showertimertalking.InfoFromFacebookActivity">
+    tools:context="com.nelladragon.scab.InfoFromFacebookActivity">
 
     <include layout="@layout/element_app_bar"/>
     <include layout="@layout/content_info_from_facebook" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">REPLACE ME</string>
+    <string name="app_name">Smart Contract Application Browser</string>
 
     <string name="version">Version %1$s</string>
     <string name="author">Peter Robinson</string>

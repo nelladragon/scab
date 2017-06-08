@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Shower Timer Talking</string>
-    <string name="app_name1">Shower</string>
-    <string name="app_name2">Timer</string>
-    <string name="app_name3">Talking</string>
+    <string name="app_name">Smart Contract Apps</string>
+    <string name="app_name1">Smart Contract</string>
+    <string name="app_name2">Application</string>
+    <string name="app_name3">Browser</string>
 
     <string name="action_add_profile">Add Profile</string>
     <string name="action_switch_profile">Switch Profile</string>

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/crypto/crypto.iml" filepath="$PROJECT_DIR$/crypto/crypto.iml" />
-      <module fileurl="file://$PROJECT_DIR$/devconsole/devconsole.iml" filepath="$PROJECT_DIR$/devconsole/devconsole.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dodge/dodge.iml" filepath="$PROJECT_DIR$/dodge/dodge.iml" />
-      <module fileurl="file://$PROJECT_DIR$/generate/generate.iml" filepath="$PROJECT_DIR$/generate/generate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/over.iml" filepath="$PROJECT_DIR$/over.iml" />
-      <module fileurl="file://$PROJECT_DIR$/showertimertalking/showertimertalking.iml" filepath="$PROJECT_DIR$/showertimertalking/showertimertalking.iml" />
-      <module fileurl="file://$PROJECT_DIR$/util/util.iml" filepath="$PROJECT_DIR$/util/util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scabe/scabe.iml" filepath="$PROJECT_DIR$/scabe/scabe.iml" />
     </modules>
   </component>
 </project>
