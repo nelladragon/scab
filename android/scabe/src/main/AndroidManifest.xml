@@ -22,26 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".DappActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".ShowerOnActivity"
-            android:label="@string/title_activity_shower_on"
-            android:parentActivityName=".MainActivity"
+            android:name=".InitActivity"
             android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.MainActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".DappActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.MainActivity" />
+                android:value="com.nelladragon.scab.DappActivity" />
         </activity>
         <activity
             android:name=".ChoosePhotoActivity"
@@ -55,11 +50,11 @@
         <activity
             android:name=".SwitchProfileActivity"
             android:label="@string/title_activity_switch_profile"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".DappActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.MainActivity" />
+                android:value="com.nelladragon.scab.DappActivity" />
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -83,22 +78,11 @@
         <activity
             android:name=".ShareActivity"
             android:label="@string/title_activity_share"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".DappActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.MainActivity" />
-        </activity>
-        <activity
-            android:name=".TutorialActivity"
-            android:label="@string/title_activity_tutorial"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Translucent" >
-
-            <!-- android:theme="@style/AppTheme.NoActionBar" -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.MainActivity" />
+                android:value="com.nelladragon.scab.DappActivity" />
         </activity>
         <activity
             android:name=".InfoFromGoogleActivity"

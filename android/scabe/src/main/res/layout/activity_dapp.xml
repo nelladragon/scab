@@ -7,8 +7,11 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include layout="@layout/inner_main"
+    <include layout="@layout/inner_dapp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <include layout="@layout/element_navigation_view"/>
+
 </android.support.v4.widget.DrawerLayout>
+

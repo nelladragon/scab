@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //Log.i(LOG_TAG, "ending");
                 NonPersistentGlobalData.first = true;
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, DappActivity.class));
                 if (firstTimeRun) {
                     // Run the tutorial activity over the top of the main activity.
                     try {
@@ -89,7 +89,7 @@ public class SplashActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         // Do nothing.
                     }
-                    startActivity(new Intent(SplashActivity.this, TutorialActivity.class));
+                    startActivity(new Intent(SplashActivity.this, InitActivity.class));
                 }
                 finish();
 

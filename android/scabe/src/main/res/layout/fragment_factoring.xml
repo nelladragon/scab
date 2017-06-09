@@ -1,0 +1,317 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    android:background="@drawable/screen_background"
+    tools:context=".DappActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/text_size"
+        android:layout_margin="@dimen/title_margin"
+        android:background="@drawable/title_background"
+        android:textColor="@color/black"
+        android:text="Composite: "
+        android:id="@+id/textView1" />
+
+
+
+    <TextView android:text=""
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView1"
+        android:layout_margin="@dimen/title_margin"
+        android:textSize="@dimen/text_size"
+        android:gravity="right"
+        android:background="@color/grey"
+        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/textViewComposite" />
+
+    <TextView android:text=" Your Calculation "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewComposite"
+        android:textSize="@dimen/text_size"
+        android:layout_margin="@dimen/title_margin"
+        android:background="@drawable/title_background"
+        android:textColor="@color/black"
+        android:id="@+id/textView2" />
+
+    <TextView android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_margin="@dimen/title_margin"
+        android:textSize="@dimen/text_size"
+        android:background="@color/grey"
+        android:textColor="@color/black"
+        android:lines="2"
+        android:scrollbars = "vertical"
+        android:id="@+id/textViewYourComposite" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/button_margin"
+        android:text=" Conceed "
+        android:textSize="@dimen/bignum_size"
+        android:background="@drawable/rect_black_stroke_white_fill"
+        android:id="@+id/buttonConcede"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/button_margin"
+        android:textSize="@dimen/bignum_size"
+        android:id="@+id/chronometer"
+        android:background="@drawable/title_background"
+        android:text="00:00"
+        android:gravity="right"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/textViewYourComposite"
+        android:layout_margin="3sp"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="11"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR1C1"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="12"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR1C2"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="13"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR1C3"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="14"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR1C4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="21"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR2C1"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="22"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR2C2"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="23"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR2C3"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="24"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR2C4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="31"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR3C1"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="32"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR3C2"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="33"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR3C3"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="34"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR3C4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="41"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR4C1"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="42"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR4C2"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="43"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR4C3"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="44"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR4C4"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="51"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR5C1"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="52"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR5C2"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="53"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR5C3"/>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="54"
+                android:textSize="@dimen/number_size"
+                android:layout_margin="@dimen/button_margin"
+                android:background="@drawable/button_notselected"
+                android:id="@+id/buttonNumR5C4"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>

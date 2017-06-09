@@ -13,22 +13,14 @@ import com.nelladragon.common.util.Fonts;
 /**
  * Show coach marks.
  */
-public class TutorialActivity extends AppCompatActivity {
+public class InitActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tutorial);
+        setContentView(R.layout.activity_init);
 
-        Typeface typeFace = Fonts.getHandlee(this.getApplicationContext());
-        TextView txt = (TextView) findViewById(R.id.textViewTutIntro);
-        txt.setTypeface(typeFace);
-        txt = (TextView) findViewById(R.id.textViewTutMenu);
-        txt.setTypeface(typeFace);
-        txt = (TextView) findViewById(R.id.textViewTutStart);
-        txt.setTypeface(typeFace);
-
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayoutTutorial);
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayoutInit);
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

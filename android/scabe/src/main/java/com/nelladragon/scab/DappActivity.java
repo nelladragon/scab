@@ -1,43 +1,50 @@
 // Copyright (C) 2015 Peter Robinson
 package com.nelladragon.scab;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.os.Bundle;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Chronometer;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.app.FragmentManager;
+        import android.support.v4.app.FragmentPagerAdapter;
+        import android.support.v4.view.GravityCompat;
+        import android.support.v4.view.ViewPager;
+        import android.os.Bundle;
+        import android.support.v4.widget.DrawerLayout;
+        import android.support.v7.app.ActionBarDrawerToggle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.view.Gravity;
+        import android.view.LayoutInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.view.ViewGroup;
 
+        import android.view.Window;
+        import android.widget.ImageView;
+        import android.widget.LinearLayout;
+        import android.widget.PopupWindow;
+        import android.widget.TextView;
+
+import com.nelladragon.common.AboutActivity;
 import com.nelladragon.common.DonateActivity;
-import com.nelladragon.common.FeedbackActivity;
-import com.nelladragon.common.HelpActivity;
-import com.nelladragon.common.RateActivity;
-import com.nelladragon.scab.data.NonPersistentGlobalData;
-import com.nelladragon.scab.guistate.ChronometerControl;
+        import com.nelladragon.common.FeedbackActivity;
+        import com.nelladragon.common.HelpActivity;
+        import com.nelladragon.common.RateActivity;
+        import com.nelladragon.common.util.Fonts;
 import com.nelladragon.scab.users.UserController;
 import com.nelladragon.scab.users.UserProfile;
-import com.nelladragon.common.util.Fonts;
-import com.nelladragon.common.AboutActivity;
+import com.viewpagerindicator.CirclePageIndicator;
 
-/**
- * Drawer main activity.
- */
-public class MainActivity extends AppCompatActivity
+public class DappActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int REQUEST_SETTINGS = 0;
     public static final int REQUEST_SWITCH = 1;
-    public static final int REQUEST_SHOWER = 2;
+    public static final int REQUEST_SWITCH_LEVEL = 2;
 
     UserController controller;
     UserProfile currentProfile;
@@ -48,43 +55,63 @@ public class MainActivity extends AppCompatActivity
     TextView txtProfileDesc;
     ImageView iSwitchUser, iAddUser;
 
-    // Main screen UI
-    ChronometerControl chronometerControl;
+    PopupWindow popup;
 
-    Button startStop;
+    DappFragment dappFrag1 = new DappFragment();
+    DappFragment dappFrag2 = new DappFragment();
+
+    /**
+     * The {@link android.support.v4.view.PagerAdapter} that will provide
+     * fragments for each of the sections. We use a
+     * {@link FragmentPagerAdapter} derivative, which will keep every
+     * loaded fragment in memory. If this becomes too memory intensive, it
+     * may be best to switch to a
+     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     */
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    /**
+     * The {@link ViewPager} that will host the section contents.
+     */
+    private ViewPager mViewPager;
+
+    Typeface font;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreateDrawer(R.layout.activity_main);
+        setContentView(R.layout.activity_dapp);
+        onCreateDrawer();
 
-        Typeface typeFace = Fonts.getLetsGoDigital(this.getApplicationContext());
-        Chronometer chronometer = (Chronometer) findViewById(R.id.chronometer);
-        chronometer.setTypeface(typeFace);
-        this.chronometerControl = new ChronometerControl(this, chronometer);
-
-        // Wipe the Chronometer state when the app first starts up.
-        if (NonPersistentGlobalData.first) {
-            NonPersistentGlobalData.first = false;
-            this.chronometerControl.deleteState();
-        }
+        this.font = Fonts.getDegaws(null);
 
 
-        this.startStop = (Button) findViewById(R.id.buttonStartStop);
-        this.startStop.setOnClickListener(new View.OnClickListener() {
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
-            public void onClick(View view) {
-                chronometerControl.deleteState();
-                startActivityForResult(new Intent(MainActivity.this, ShowerOnActivity.class), REQUEST_SHOWER);
+            public void transformPage(View page, float position) {
+                // do transformation here
+                final float normalizedposition = Math.abs(Math.abs(position) - 1);
+                page.setScaleX(normalizedposition / 2 + 0.5f);
+                page.setScaleY(normalizedposition / 2 + 0.5f);
             }
         });
+
+        CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.viewpagerindicator);
+        indicator.setViewPager(this.mViewPager);
+
+
     }
 
 
-
-    protected void onCreateDrawer(int layoutId) {
-        setContentView(layoutId);
-
+    private void onCreateDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -110,30 +137,25 @@ public class MainActivity extends AppCompatActivity
         this.iSwitchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, SwitchProfileActivity.class), REQUEST_SWITCH);
+                startActivityForResult(new Intent(DappActivity.this, SwitchProfileActivity.class), REQUEST_SWITCH);
             }
         });
         this.iAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 controller.addNewProfile();
-                startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
+                startActivityForResult(new Intent(DappActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
             }
         });
         this.userPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
+                startActivityForResult(new Intent(DappActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
             }
         });
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        this.chronometerControl.restoreState();
-    }
 
     @Override
     public void onBackPressed() {
@@ -142,16 +164,19 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+
         }
     }
 
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         switch (id) {
+
             case R.id.nav_settings:
                 Intent i = new Intent(this, SettingsActivity.class);
                 i.putExtra(SettingsActivity.TAB_TO_OPEN, SettingsActivity.SETTINGS_TAB_CONFIG);
@@ -169,9 +194,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_donate:
                 startActivity(new Intent(this, DonateActivity.class));
                 break;
-            case R.id.nav_tutorial:
-                startActivity(new Intent(this, TutorialActivity.class));
-                break;
             case R.id.nav_help:
                 startActivity(new Intent(this, HelpActivity.class));
                 break;
@@ -183,6 +205,62 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private static final int MULT = 0;
+        private static final int DIV = 1;
+
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case MULT:
+                    return dappFrag1;
+                case DIV:
+                    return dappFrag2;
+                default:
+                    throw new Error("Unknown page: " + position);
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case MULT:
+                    return "Prime Factor Quest: Multiply";
+                case DIV:
+                    return "Prime Factor Quest: Divide";
+            }
+            return null;
+        }
+
+
+        @Override
+        public void setPrimaryItem(ViewGroup viewGroup, int position, Object obj) {
+            setTitle(getPageTitle(position));
+
+            switch (position) {
+                case MULT:
+                    break;
+                case DIV:
+                    break;
+            }
+        }
     }
 
 
@@ -204,9 +282,9 @@ public class MainActivity extends AppCompatActivity
                     setupDrawerUI();
                 }
                 break;
-            case REQUEST_SHOWER:
-                // Nothing to do.
+            case REQUEST_SWITCH_LEVEL:
                 break;
+
             default:
                 break;
         }
@@ -225,4 +303,19 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+
 }

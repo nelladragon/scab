@@ -12,7 +12,7 @@
     android:background="@drawable/shower_01"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/element_app_bar"
-    tools:context=".MainActivity">
+    >
 
     <Chronometer
         android:layout_width="wrap_content"
