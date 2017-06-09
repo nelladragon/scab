@@ -1,6 +1,6 @@
 # Smart Contract Application Browser
 
-The Smart Contract Application Browser (SCAB) aims to be a browser and app store for the Blockchain / Smart Contract era. A Smart Contract Application is my term for Decentralized Application (Dapp). This combines a code on a blockchain (smart contract), client side code and GUI, and cryptographic keys used to identify the parties involved in the contract.
+The Smart Contract Application Browser (SCAB) aims to be a browser and app store for the Blockchain / Smart Contract era. A Smart Contract Application, also known as a Decentralized Application (Dapp), combines code on a blockchain (smart contract), client side code and GUI, and cryptographic keys used to identify the parties involved in the contract.
 
 The SCAB is an application which runs on an end point such as a mobile phone, tablet of computer. The Dapp GUI and client side code runs in a sandbox in the SCAB, in a similar way to how HTML and Javascript run in a sandbox in a web browser. Similarly to how web browsers can display content from many websites, the SCAB can display the GUI of many contracts.
 
