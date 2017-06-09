@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nelladragon.scab" >
+
+    <!-- Normal Level Permissions -->
+    <!-- Needed for Facebook analytics and to get Facebook information -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DappActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".InitActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".DappActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.DappActivity" />
+        </activity>
+        <activity
+            android:name=".ChoosePhotoActivity"
+            android:label="@string/title_activity_choose_photo"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".SwitchProfileActivity"
+            android:label="@string/title_activity_switch_profile"
+            android:parentActivityName=".DappActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.DappActivity" />
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name=".InfoFromFacebookActivity"
+            android:label="@string/title_activity_info_from_facebook"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".ShareActivity"
+            android:label="@string/title_activity_share"
+            android:parentActivityName=".DappActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.DappActivity" />
+        </activity>
+        <activity
+            android:name=".InfoFromGoogleActivity"
+            android:label="@string/title_activity_info_from_google"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".ChooseLanguageActivity"
+            android:label="@string/title_activity_choose_language"
+            android:parentActivityName=".SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nelladragon.scab.SettingsActivity" />
+        </activity>
+
+
+        <activity
+            android:name="com.nelladragon.common.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+        <activity
+            android:name="com.nelladragon.common.FeedbackActivity"
+            android:label="@string/title_activity_feedback"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.RateActivity"
+            android:label="@string/title_activity_rate"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.nelladragon.common.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+    </application>
+
+</manifest>

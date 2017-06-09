@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="help_info_app_specific">
+Shower Timer Talking uses Android’s Text To Speech engine to talk,
+so the talking is more than a little robotic. If you use an Android
+version prior to 5.0, you will be might be asked to install a
+“high quality text to speech” engine. If you choose to do this, the
+quality of the speaking will be better.
+
+\n\nThe app allows you to set your name and profile photo using Facebook
+or Google login. If you choose to use this feature, the app does not
+collect any data from these services beyond your username and profile photo.
+    </string>
+
+
+    <string name="help_info_common">
+\n\nThe app has “in app” purchases. This allows you to donate to the continued
+development of the app. I think the donation model is better than having
+advertising in the app or charging for the app before you can use it.
+All donations are much appreciated.
+
+\n\nIf you have some questions about the app, please send me an email using the
+Feedback menu option.
+    </string>
+</resources>
