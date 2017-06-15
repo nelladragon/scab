@@ -30,10 +30,12 @@ services:
   ports: 
    - "8545:8545"
    - "30303:30303"
+   - "30303:30303/udp"
   volumes:
    - ~/.rinkeby:/data
-#   entrypoint: ["ls", "-al", "/data"]
-  entrypoint: ["geth", "--rinkeby", "--datadir=/data", "--syncmode=light", "--rpc", "--ipcdisable"]
+#   entrypoint: ["ls", "-al", "/data", "--rpcaddr=\"0.0.0.0\"", "--ipcdisable"]
+#  entrypoint: ["geth", "--rinkeby", "--datadir=/data", "--syncmode=light", "--rpc", "--rpcapi \"db,personal,eth,net,web3\"", "--rpccorsdomain='*'", "--rpcaddr=\"0.0.0.0\""]
+  command: --rinkeby --syncmode=light --datadir=/data --rpcapi "db,personal,eth,net,web3" --rpccorsdomain='*' --rpc --rpcaddr="0.0.0.0"
   networks:
    - cloud
 

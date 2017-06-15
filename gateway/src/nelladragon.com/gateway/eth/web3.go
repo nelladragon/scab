@@ -6,6 +6,7 @@ import (
 	"github.com/bitly/go-simplejson"
 	"github.com/parnurzeal/gorequest"
 	"log"
+        "fmt"
 )
 
 const (
@@ -19,8 +20,8 @@ func call(args ...string) (*simplejson.Json) {
 		params = args[1]
 	}
 
-	postBody := `{"jsonrpc":"2.0","method":"`+method+`","params":`+params+`}`
-	// fmt.Println("postBody: " + postBody)
+	postBody := `{"jsonrpc":"2.0","method":"`+method+`","params":`+params+`,"id":1}`
+	fmt.Println("postBody: " + postBody)
 
 	_, body, errs := gorequest.New().Post(apiUrl).
 		Send(postBody).
@@ -29,6 +30,8 @@ func call(args ...string) (*simplejson.Json) {
 	if errs != nil {
 		panic(errs)
 	}
+	fmt.Println("response body: " + body)
+
 
 	js, err := simplejson.NewJson([]byte(body))
 	if err != nil {

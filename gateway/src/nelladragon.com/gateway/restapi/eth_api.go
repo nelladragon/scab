@@ -27,7 +27,7 @@ func getEthBalance(w rest.ResponseWriter, r *rest.Request) {
 	}
 
 	balance := eth.GetBalance(account);
-
+	log.Printf("Balance: %s\n", balance)
 	w.WriteJson(&balance)
 }
 
