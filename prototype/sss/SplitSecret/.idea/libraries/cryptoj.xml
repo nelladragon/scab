@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cryptoj">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/cryptoj.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
