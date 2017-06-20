@@ -2,34 +2,33 @@
 package com.nelladragon.sss.split;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 /**
  * Represents a generated secret and its shares.
  */
 public class SplitKey {
-    BigInteger secret;
-    SecretShare passwordShare;
-    SecretShare deviceShare;
-    SecretShare[] externShares;
+    private final BigInteger secret;
+    private final Map<ShareType, SecretShare> shares;
 
-    public SplitKey(BigInteger secret, SecretShare passwordShare, SecretShare deviceShare, SecretShare[] externalShares) {
+
+    public SplitKey(final BigInteger secret, final Map<ShareType, SecretShare> shares) {
         this.secret = secret;
-        this.passwordShare = passwordShare;
-        this.deviceShare = deviceShare;
-        this.externShares = externalShares;
+        this.shares = shares;
     }
 
-
-    public SecretShare[] getExternalShares() {
-        return this.externShares;
-    }
 
     public SecretShare getDeviceShare() {
-        return this.deviceShare;
+        return this.shares.get(ShareType.DEVICE);
     }
 
     public BigInteger getSecret() {
         return this.secret;
+    }
+
+
+    public SecretShare getShare(final ShareType type) {
+        return this.shares.get(type);
     }
 
 }

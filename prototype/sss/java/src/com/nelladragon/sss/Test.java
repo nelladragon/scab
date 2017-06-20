@@ -2,7 +2,6 @@
 package com.nelladragon.sss;
 
 
-import com.nelladragon.sss.publicapi.CommonCryptoExtract;
 import com.nelladragon.sss.split.SecretShare;
 import com.nelladragon.sss.util.*;
 
@@ -15,78 +14,6 @@ import static com.nelladragon.sss.util.Util.compare;
  * Runner class to execute proof of concept code.
  */
 public class Test {
-    /**
-     * Display the state of each of the keys and shares.
-     */
-    public static void dumpState() {
-        Util.print("  Original Key: ");
-        Util.println(originalKey.toString(16));
-
-        Util.print("  RecoveredKey: ");
-        if (recoveredKey == null) {
-            Util.println("null");
-        } else {
-            Util.println(recoveredKey.toString(16));
-        }
-
-        Util.print("  Pass Share: ");
-        if (crypto.passwordShare == null) {
-            Util.println("null");
-        } else {
-            SecretShare pass = crypto.passwordShare;
-            Util.print(pass.getType().toString());
-            Util.print(", ");
-            Util.print(pass.getShareX().toString(16));
-            Util.print(", ");
-            Util.println(pass.getShareY().toString(16));
-        }
-
-        Util.print("  Device Share: ");
-        if (crypto.deviceShare == null) {
-            Util.println("null");
-        } else {
-            SecretShare dev = crypto.deviceShare;
-            Util.print(dev.getType().toString());
-            Util.print(", ");
-            Util.print(dev.getShareX().toString(16));
-            Util.print(", ");
-            Util.println(dev.getShareY().toString(16));
-        }
-
-        Util.print("  Online Share: ");
-        if (onlineShare == null) {
-            Util.println("null");
-        } else {
-            Util.print(onlineShare.getType().toString());
-            Util.print(", ");
-            Util.print(onlineShare.getShareX().toString(16));
-            Util.print(", ");
-            Util.println(onlineShare.getShareY().toString(16));
-        }
-
-        Util.print("  Backup Share: ");
-        if (backupShare == null) {
-            Util.println("null");
-        } else {
-            Util.print(backupShare.getType().toString());
-            Util.print(", ");
-            Util.print(backupShare.getShareX().toString(16));
-            Util.print(", ");
-            Util.println(backupShare.getShareY().toString(16));
-        }
-
-    }
-
-
-
-
-
-    public static BigInteger originalKey;
-    public static BigInteger recoveredKey;
-    public static SecretShare onlineShare;
-    public static SecretShare backupShare;
-    public static CommonCryptoExtract crypto;
-
     public static Device device1;
     public static Device device2;
     public static Cloud cloud;
@@ -123,15 +50,51 @@ public class Test {
 
         byte[] deviceData = new byte[] {1,2,3,4};
 
-        Util.println("App First Time Registration: Device 1");
+        Util.println("*****App First Time Registration: Device 1");
         device1 = new Device();
         device1.register(passwordOriginal, backupPasswordOriginal, deviceData);
 
-        Util.println(" Re-create the key using the password share, cloud share and the device share");
+        Util.println("*****Re-create the key using the password share, cloud share and the device share");
         byte[] recoveredDeviceData = device1.getDataPasswordCloudDevice(passwordOriginal);
         if (!Util.compare(deviceData, recoveredDeviceData)) {
             System.exit(-1);
         }
+
+
+        Util.println("*******Proactivize cloud");
+        device1.proactivizeTheCloud();
+        Util.println("******Re-create the key using the password share, cloud share and the device share");
+        recoveredDeviceData = device1.getDataPasswordCloudDevice(passwordOriginal);
+        if (!Util.compare(deviceData, recoveredDeviceData)) {
+            System.exit(-1);
+        }
+
+        Util.println("*******Change password");
+        device1.changePassword(passwordOriginal, passwordNew);
+        Util.println("******Re-create the key using the password share, cloud share and the device share");
+        recoveredDeviceData = device1.getDataPasswordCloudDevice(passwordNew);
+        if (!Util.compare(deviceData, recoveredDeviceData)) {
+            System.exit(-1);
+        }
+
+
+
+        Util.println("*******Get transfer share");
+        byte[] transferShare1 = device1.getTransferShare(passwordNew);
+
+        Util.println("*******Set-up new device using transfer share");
+        device2 = new Device();
+        device2.registerSecondaryDevice(passwordNew, transferShare1);
+
+        Util.println("*******Logging into device 2 with password, cloud and device shares only");
+        recoveredDeviceData = device2.getDataPasswordCloudDevice(passwordNew);
+        if (!Util.compare(deviceData, recoveredDeviceData)) {
+            System.exit(-1);
+        }
+
+
+
+
 
 /*        Util.println(" Re-create the key using the backup share, cloud share and the device share");
         recoveredDeviceData = device1.getDataBackupCloudDevice(backupOriginal);

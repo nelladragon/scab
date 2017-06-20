@@ -2,10 +2,7 @@ package com.nelladragon.sss;
 
 import com.nelladragon.sss.crypto.AESEncDec;
 import com.nelladragon.sss.password.PasswordHardening;
-import com.nelladragon.sss.split.SecretShare;
-import com.nelladragon.sss.split.ShareType;
-import com.nelladragon.sss.split.SplitKey;
-import com.nelladragon.sss.split.SplitSecretScheme;
+import com.nelladragon.sss.split.*;
 import com.nelladragon.sss.crypto.SHA256Digest;
 import com.nelladragon.sss.util.Util;
 
@@ -31,7 +28,7 @@ public class Device {
     SecretShare newShare;
 
 
-    SplitSecretScheme scheme;
+    FixedShareThresholdScheme scheme;
 
     AESEncDec aes = new AESEncDec();
 
@@ -47,44 +44,55 @@ public class Device {
 
 
     public Device() throws Exception {
-        this.scheme = new SplitSecretScheme();
+        this.scheme = new FixedShareThresholdScheme();
     }
 
 
+    /**
+     * Register first device.
+     *
+     * @param password
+     * @param backupPassword
+     * @param deviceData
+     * @throws Exception
+     */
     public void register(byte[] password, byte[] backupPassword, byte[] deviceData) throws Exception {
         byte[][] hardenedPasswordAndSalt = PasswordHardening.mainPasswordHardenGenerate(password);
         SecretShare passwordShare = new SecretShare(ShareType.PASSWORD, hardenedPasswordAndSalt[0]);
         Util.print("PasswordShare: " + passwordShare);
         this.passwordParamters = hardenedPasswordAndSalt[1];
 
-//        byte[][] hardenedBackupPasswordAndSalt = PasswordHardening.backupPasswordHardenGenerate(backupPassword);
-//        SecretShare backupShare = new SecretShare(ShareType.BACKUP, hardenedBackupPasswordAndSalt[0]);
-//        Util.print("BackupShare: " + backupShare);
-//        this.backupParamters = hardenedBackupPasswordAndSalt[1];
+        byte[][] hardenedBackupPasswordAndSalt = PasswordHardening.backupPasswordHardenGenerate(backupPassword);
+        SecretShare backupShare = new SecretShare(ShareType.BACKUP, hardenedBackupPasswordAndSalt[0]);
+        Util.print("BackupShare: " + backupShare);
+        this.backupParamters = hardenedBackupPasswordAndSalt[1];
 
 
-        SplitKey splitKey = this.scheme.generate(passwordShare);
-//        SplitKey splitKey = scheme.generate(passwordShare, backupShare);
+        SplitKey splitKey = this.scheme.generateFirstTimeRegistration(passwordShare, backupShare);
         this.deviceShare = splitKey.getDeviceShare();
         Util.print("DeviceShare: " + this.deviceShare);
 
         // Share which should be stored in parts of the system other than the device.
         // These shares can be exported by passing in an array offset.
-        SecretShare[] cloudShares = splitKey.getExternalShares();
-        for (SecretShare share: cloudShares) {
-            Util.print("CloudShare: " + share);
-        }
+        SecretShare cloud1Share = splitKey.getShare(ShareType.CLOUD1);
+        SecretShare cloud2Share = splitKey.getShare(ShareType.CLOUD2);
+        SecretShare cloud3Share = splitKey.getShare(ShareType.CLOUD3);
+        SecretShare cloud4Share = splitKey.getShare(ShareType.CLOUD4);
+        Util.print("Cloud1Share: " + cloud1Share);
+        Util.print("Cloud2Share: " + cloud2Share);
+        Util.print("Cloud3Share: " + cloud3Share);
+        Util.print("Cloud4Share: " + cloud4Share);
 
         Cloud cloud = Cloud.getSingleInstance();
-        cloud.setData(Cloud.CLOUD_SHARE1, cloudShares[0].toBytes());
-        cloud.setData(Cloud.CLOUD_SHARE2, cloudShares[1].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE1, cloud1Share.toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE2, cloud2Share.toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE3, cloud3Share.toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE4, cloud4Share.toBytes());
         cloud.setData(Cloud.PASSWORD_HARDENING_PARAMETERS, this.passwordParamters);
         cloud.setData(Cloud.BACKUPPASSWORD_HARDENING_PARAMETERS, this.backupParamters);
 
-
         BigInteger rawSecret = splitKey.getSecret();
-
-
+        Util.println("Raw Secret: " + rawSecret);
 
         SecretKey derivedKey = aes.generateKey(rawSecret);
 
@@ -96,6 +104,58 @@ public class Device {
     }
 
 
+    /**
+     * Register secondary device.
+     *
+     * @param password
+     * @param transferShare
+     * @throws Exception
+     */
+    public void registerSecondaryDevice(byte[] password, byte[] transferShare) throws Exception {
+        Cloud cloud = Cloud.getSingleInstance();
+        this.passwordParamters = cloud.getData(Cloud.PASSWORD_HARDENING_PARAMETERS);
+        this.authEncryptedDeviceData = cloud.getData(Cloud.DEVICE_DATA);
+        this.authEncryptedDeviceDataNonce = cloud.getData(Cloud.DEVICE_DATA_PARAMETERS);
+
+        byte[] hardenedPassword = PasswordHardening.mainPasswordHardenRegenerate(password, this.passwordParamters);
+        SecretShare passwordShare = new SecretShare(ShareType.PASSWORD, hardenedPassword);
+        Util.print("PasswordShare: " + passwordShare);
+
+        byte[] cloudShare1Bytes = cloud.getData(Cloud.CLOUD_SHARE1);
+        SecretShare cloudShare1 = SecretShare.fromBytes(cloudShare1Bytes);
+        Util.print("CloudShare1: " + cloudShare1);
+
+        byte[] cloudShare2Bytes = cloud.getData(Cloud.CLOUD_SHARE2);
+        SecretShare cloudShare2 = SecretShare.fromBytes(cloudShare2Bytes);
+        Util.print("CloudShare2: " + cloudShare2);
+
+        byte[] cloudShare3Bytes = cloud.getData(Cloud.CLOUD_SHARE3);
+        SecretShare cloudShare3 = SecretShare.fromBytes(cloudShare3Bytes);
+        Util.print("CloudShare3: " + cloudShare3);
+
+        byte[] cloudShare4Bytes = cloud.getData(Cloud.CLOUD_SHARE4);
+        SecretShare cloudShare4 = SecretShare.fromBytes(cloudShare4Bytes);
+        Util.print("CloudShare4: " + cloudShare4);
+
+
+
+
+
+        SecretShare[] shares = new SecretShare[] {passwordShare, cloudShare1, cloudShare2, cloudShare3, cloudShare4, SecretShare.fromBytes(transferShare)};
+
+        // Do trial decryption to see if the password is correct.
+        BigInteger rawSecret = this.scheme.calculateSecret(shares);
+        Util.println("Recovered Raw Secret: " + rawSecret);
+        SecretKey derivedKey = aes.generateKey(rawSecret);
+        try {
+            aes.authDecrypt(derivedKey, this.authEncryptedDeviceData, this.authEncryptedDeviceDataNonce);
+        } catch (Exception ex) {
+            throw new Exception("Invalid old password!");
+        }
+
+
+        this.deviceShare = this.scheme.calculateDeviceShare(shares);
+    }
 
 
 
@@ -111,39 +171,178 @@ public class Device {
         byte[] cloudShare1Bytes = cloud.getData(Cloud.CLOUD_SHARE1);
         SecretShare cloudShare1 = SecretShare.fromBytes(cloudShare1Bytes);
         Util.print("CloudShare1: " + cloudShare1);
+
         byte[] cloudShare2Bytes = cloud.getData(Cloud.CLOUD_SHARE2);
         SecretShare cloudShare2 = SecretShare.fromBytes(cloudShare2Bytes);
         Util.print("CloudShare2: " + cloudShare2);
-        SecretShare[] shares = new SecretShare[] {passwordShare, cloudShare1, cloudShare2, this.deviceShare};
+
+        byte[] cloudShare3Bytes = cloud.getData(Cloud.CLOUD_SHARE3);
+        SecretShare cloudShare3 = SecretShare.fromBytes(cloudShare3Bytes);
+        Util.print("CloudShare3: " + cloudShare3);
+
+        byte[] cloudShare4Bytes = cloud.getData(Cloud.CLOUD_SHARE4);
+        SecretShare cloudShare4 = SecretShare.fromBytes(cloudShare4Bytes);
+        Util.print("CloudShare4: " + cloudShare4);
+
+        SecretShare[] shares = new SecretShare[] {passwordShare, cloudShare1, cloudShare2, cloudShare3, cloudShare4, this.deviceShare};
         Util.print("DeviceShare: " + this.deviceShare);
 
-        BigInteger rawSecret = this.scheme.recoverSecret(shares);
+        BigInteger rawSecret = this.scheme.calculateSecret(shares);
+        Util.println("Recovered Raw Secret: " + rawSecret);
         SecretKey derivedKey = aes.generateKey(rawSecret);
 
         return aes.authDecrypt(derivedKey, this.authEncryptedDeviceData, this.authEncryptedDeviceDataNonce);
     }
 
-//
-//
-//
-//    /**
-//     * Export a share.
-//     *
-//     * In operational code, the share would be wrapped by a public key.
-//     *
-//     * @return The share to be exported.
-//     */
-//    public SecretShare exportWrappedShare(int externalShareNumber) throws Exception {
-//        if (externalShareNumber == -1) {
-//            return this.newShare;
-//        }
-//
-//        if (externalShareNumber >= this.extShares.length) {
-//            throw new Exception("Invalid share number");
-//        }
-//        return this.extShares[externalShareNumber];
-//    }
-//
+
+
+    public void proactivizeTheCloud() throws Exception {
+        Cloud cloud = Cloud.getSingleInstance();
+        byte[] cloudShare1Bytes = cloud.getData(Cloud.CLOUD_SHARE1);
+        SecretShare cloudShare1 = SecretShare.fromBytes(cloudShare1Bytes);
+        Util.print("CloudShare1: " + cloudShare1);
+
+        byte[] cloudShare2Bytes = cloud.getData(Cloud.CLOUD_SHARE2);
+        SecretShare cloudShare2 = SecretShare.fromBytes(cloudShare2Bytes);
+        Util.print("CloudShare2: " + cloudShare2);
+
+        byte[] cloudShare3Bytes = cloud.getData(Cloud.CLOUD_SHARE3);
+        SecretShare cloudShare3 = SecretShare.fromBytes(cloudShare3Bytes);
+        Util.print("CloudShare3: " + cloudShare3);
+
+        byte[] cloudShare4Bytes = cloud.getData(Cloud.CLOUD_SHARE4);
+        SecretShare cloudShare4 = SecretShare.fromBytes(cloudShare4Bytes);
+        Util.print("CloudShare4: " + cloudShare4);
+
+        SecretShare[] shares = new SecretShare[] {cloudShare1, cloudShare2, cloudShare3, cloudShare4};
+
+        SecretShare[] newShares = this.scheme.proactivizeCloudShares(shares);
+
+        Util.print("Cloud1Share: " + newShares[0]);
+        Util.print("Cloud2Share: " + newShares[1]);
+        Util.print("Cloud3Share: " + newShares[2]);
+        Util.print("Cloud4Share: " + newShares[3]);
+
+        cloud.setData(Cloud.CLOUD_SHARE1, newShares[0].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE2, newShares[1].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE3, newShares[2].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE4, newShares[3].toBytes());
+    }
+
+
+
+
+    public void changePassword(byte[] oldPassword, byte[] newPassword) throws Exception {
+        byte[] oldHardenedPassword = PasswordHardening.mainPasswordHardenRegenerate(oldPassword, this.passwordParamters);
+
+        SecretShare oldPasswordShare = new SecretShare(ShareType.PASSWORD, oldHardenedPassword);
+        Util.print("PasswordShare: " + oldPasswordShare);
+
+        Cloud cloud = Cloud.getSingleInstance();
+        byte[] cloudShare1Bytes = cloud.getData(Cloud.CLOUD_SHARE1);
+        SecretShare cloudShare1 = SecretShare.fromBytes(cloudShare1Bytes);
+        Util.print("CloudShare1: " + cloudShare1);
+
+        byte[] cloudShare2Bytes = cloud.getData(Cloud.CLOUD_SHARE2);
+        SecretShare cloudShare2 = SecretShare.fromBytes(cloudShare2Bytes);
+        Util.print("CloudShare2: " + cloudShare2);
+
+        byte[] cloudShare3Bytes = cloud.getData(Cloud.CLOUD_SHARE3);
+        SecretShare cloudShare3 = SecretShare.fromBytes(cloudShare3Bytes);
+        Util.print("CloudShare3: " + cloudShare3);
+
+        byte[] cloudShare4Bytes = cloud.getData(Cloud.CLOUD_SHARE4);
+        SecretShare cloudShare4 = SecretShare.fromBytes(cloudShare4Bytes);
+        Util.print("CloudShare4: " + cloudShare4);
+
+        Util.print("DeviceShare: " + this.deviceShare);
+
+        // Do a trial decryption prior to the password change to check the old password is valid.
+        SecretShare[] shares = new SecretShare[] {oldPasswordShare, cloudShare1, cloudShare2, cloudShare3, cloudShare4, this.deviceShare};
+        Util.print("DeviceShare: " + this.deviceShare);
+        BigInteger rawSecret = this.scheme.calculateSecret(shares);
+        Util.println("Recovered Raw Secret: " + rawSecret);
+        SecretKey derivedKey = aes.generateKey(rawSecret);
+        try {
+            aes.authDecrypt(derivedKey, this.authEncryptedDeviceData, this.authEncryptedDeviceDataNonce);
+        } catch (Exception ex) {
+            throw new Exception("Invalid old password!");
+        }
+
+
+        byte[][] newHardenedPasswordAndParams = PasswordHardening.mainPasswordHardenGenerate(newPassword);
+        byte[] newHardenedPassword = newHardenedPasswordAndParams[0];
+        byte[] newHardenedPasswordParams = newHardenedPasswordAndParams[1];
+        SecretShare newPasswordShare = new SecretShare(ShareType.PASSWORD, newHardenedPassword);
+        Util.print("PasswordShare: " + newPasswordShare);
+
+
+
+
+        SecretShare[] oldCloudShares = new SecretShare[] {cloudShare1, cloudShare2, cloudShare3, cloudShare4};
+
+        SecretShare[] newCloudShares = this.scheme.changePassword(oldPasswordShare, newPasswordShare, oldCloudShares);
+
+        Util.print("Cloud1Share: " + newCloudShares[0]);
+        Util.print("Cloud2Share: " + newCloudShares[1]);
+        Util.print("Cloud3Share: " + newCloudShares[2]);
+        Util.print("Cloud4Share: " + newCloudShares[3]);
+
+        cloud.setData(Cloud.CLOUD_SHARE1, newCloudShares[0].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE2, newCloudShares[1].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE3, newCloudShares[2].toBytes());
+        cloud.setData(Cloud.CLOUD_SHARE4, newCloudShares[3].toBytes());
+        this.passwordParamters = newHardenedPasswordParams;
+        cloud.setData(Cloud.PASSWORD_HARDENING_PARAMETERS, this.passwordParamters);
+
+    }
+
+    /**
+     * Calculate the transfer share.
+     *
+     * @return Transfer share.
+     */
+    public byte[] getTransferShare(byte[] password) throws Exception {
+        // Start by doing trial decryption to check password.
+        byte[] hardenedPassword = PasswordHardening.mainPasswordHardenRegenerate(password, this.passwordParamters);
+        SecretShare passwordShare = new SecretShare(ShareType.PASSWORD, hardenedPassword);
+        Util.print("PasswordShare: " + passwordShare);
+
+
+        Cloud cloud = Cloud.getSingleInstance();
+        byte[] cloudShare1Bytes = cloud.getData(Cloud.CLOUD_SHARE1);
+        SecretShare cloudShare1 = SecretShare.fromBytes(cloudShare1Bytes);
+        Util.print("CloudShare1: " + cloudShare1);
+
+        byte[] cloudShare2Bytes = cloud.getData(Cloud.CLOUD_SHARE2);
+        SecretShare cloudShare2 = SecretShare.fromBytes(cloudShare2Bytes);
+        Util.print("CloudShare2: " + cloudShare2);
+
+        byte[] cloudShare3Bytes = cloud.getData(Cloud.CLOUD_SHARE3);
+        SecretShare cloudShare3 = SecretShare.fromBytes(cloudShare3Bytes);
+        Util.print("CloudShare3: " + cloudShare3);
+
+        byte[] cloudShare4Bytes = cloud.getData(Cloud.CLOUD_SHARE4);
+        SecretShare cloudShare4 = SecretShare.fromBytes(cloudShare4Bytes);
+        Util.print("CloudShare4: " + cloudShare4);
+
+        SecretShare[] shares = new SecretShare[] {passwordShare, cloudShare1, cloudShare2, cloudShare3, cloudShare4, this.deviceShare};
+        Util.print("DeviceShare: " + this.deviceShare);
+
+        BigInteger rawSecret = this.scheme.calculateSecret(shares);
+        Util.println("Recovered Raw Secret: " + rawSecret);
+        SecretKey derivedKey = aes.generateKey(rawSecret);
+
+        try {
+            aes.authDecrypt(derivedKey, this.authEncryptedDeviceData, this.authEncryptedDeviceDataNonce);
+        } catch (Exception ex) {
+            throw new Exception("Invalid password!");
+        }
+
+        // Calculate a new share.
+        return this.scheme.calculateTransferShare(shares).toBytes();
+    }
+
 //
 //    /**
 //     * Zeroize all shares except for the device share and the reconstructed key.
@@ -177,7 +376,7 @@ public class Device {
 //     */
 //    public void reconstructSplitKey() throws Exception {
 //        SecretShare[] shares = assembleShares();
-//        this.key = this.scheme.recoverSecret(shares);
+//        this.key = this.scheme.calculateSecret(shares);
 //    }
 //
 //

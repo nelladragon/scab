@@ -31,7 +31,7 @@ public class AESEncDec {
     public byte[][] authEncrypt(SecretKey key, byte[] plainText) throws Exception {
         Cipher aesEncrypt = Cipher.getInstance("AES/GCM/NoPadding");
 
-        SecureRandom random = SecureRandom.getInstanceStrong();
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
         final byte[] nonce = new byte[GCM_NONCE_LENGTH];
         random.nextBytes(nonce);
         GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, nonce);

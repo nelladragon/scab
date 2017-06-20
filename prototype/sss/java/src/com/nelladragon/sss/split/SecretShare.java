@@ -30,10 +30,10 @@ public class SecretShare {
 
         switch (type) {
             case PASSWORD:
-                this.shareX = BigInteger.ONE;
+                this.shareX = FixedShareThresholdScheme.X_BIG_PASSWORD;
                 break;
             case BACKUP:
-                this.shareX = BigInteger.ONE.negate();
+                this.shareX = FixedShareThresholdScheme.X_BIG_BACKUP;
                 break;
             default:
                 throw new RuntimeException("Unexpected share type");
@@ -60,6 +60,10 @@ public class SecretShare {
         return this.type;
     }
 
+    public void updateY(BigInteger y) {
+        this.shareY = y;
+    }
+
 
     private static final int INT_LEN = 4;
 
@@ -72,7 +76,7 @@ public class SecretShare {
         int lenShareYBytes = shareYBytes.length;
         byte[] lenShareYBytesBytes = ByteBuffer.allocate(INT_LEN).putInt(lenShareYBytes).array();
 
-        int type = this.type.ordinal();
+        int type = this.type.xValue;
         byte[] typeBytes = ByteBuffer.allocate(INT_LEN).putInt(type).array();
 
         int totalLen = typeBytes.length + lenShareXBytesBytes.length + shareXBytes.length + lenShareYBytesBytes.length + shareYBytes.length;
@@ -121,8 +125,8 @@ public class SecretShare {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         return builder.append("SecretShare: Type: " + this.type)
-                .append("SecretShare: X: " + this.shareX)
-                .append("SecretShare: Y: " + this.shareY)
+                .append(", SecretShare: X: " + this.shareX)
+                .append(", SecretShare: Y: " + this.shareY)
                 .append("\n")
                 .toString();
     }

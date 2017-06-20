@@ -16,6 +16,8 @@ public class Cloud {
 
     public static final int CLOUD_SHARE1 = 4;
     public static final int CLOUD_SHARE2 = 5;
+    public static final int CLOUD_SHARE3 = 6;
+    public static final int CLOUD_SHARE4 = 7;
 
 
     private static Map<Integer, byte[]> cloudData = new HashMap<>();
@@ -32,6 +34,18 @@ public class Cloud {
 
     public void setData(int type, byte[] data) {
         cloudData.put(type, data);
+    }
+
+
+    //TODO need to do something smart about versioning of data / locking to avoid problems with partial changes.
+
+    public void setDataMultiple(int[] type, byte[][] data) {
+        if (type.length != data.length) {
+            throw new RuntimeException("Type and data arrays are different lengths");
+        }
+        for (int i=0; i < type.length; i++) {
+            cloudData.put(type[i], data[i]);
+        }
     }
 
 
