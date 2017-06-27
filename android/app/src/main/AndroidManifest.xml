@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nelladragon.scab" >
+    package="com.nelladragon.scab">
 
     <!-- Normal Level Permissions -->
     <!-- Needed for Facebook analytics and to get Facebook information -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".SplashActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,27 +21,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DappActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:name=".MainNavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".InitActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".DappActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".MainNavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.DappActivity" />
+                android:value="com.nelladragon.scab.MainNavigationActivity" />
         </activity>
         <activity
             android:name=".ChoosePhotoActivity"
             android:label="@string/title_activity_choose_photo"
             android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nelladragon.scab.SettingsActivity" />
@@ -50,11 +47,11 @@
         <activity
             android:name=".SwitchProfileActivity"
             android:label="@string/title_activity_switch_profile"
-            android:parentActivityName=".DappActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".MainNavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.DappActivity" />
+                android:value="com.nelladragon.scab.MainNavigationActivity" />
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -70,7 +67,7 @@
             android:name=".InfoFromFacebookActivity"
             android:label="@string/title_activity_info_from_facebook"
             android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nelladragon.scab.SettingsActivity" />
@@ -78,17 +75,17 @@
         <activity
             android:name=".ShareActivity"
             android:label="@string/title_activity_share"
-            android:parentActivityName=".DappActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:parentActivityName=".MainNavigationActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nelladragon.scab.DappActivity" />
+                android:value="com.nelladragon.scab.MainNavigationActivity" />
         </activity>
         <activity
             android:name=".InfoFromGoogleActivity"
             android:label="@string/title_activity_info_from_google"
             android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nelladragon.scab.SettingsActivity" />
@@ -97,34 +94,31 @@
             android:name=".ChooseLanguageActivity"
             android:label="@string/title_activity_choose_language"
             android:parentActivityName=".SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nelladragon.scab.SettingsActivity" />
         </activity>
-
-
         <activity
             android:name="com.nelladragon.common.AboutActivity"
             android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.nelladragon.common.FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.nelladragon.common.RateActivity"
             android:label="@string/title_activity_rate"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.nelladragon.common.HelpActivity"
             android:label="@string/title_activity_help"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

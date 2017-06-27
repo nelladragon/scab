@@ -32,7 +32,7 @@
 
 
     <color name="semitransparent">#80000000</color>
-
+    <color name="main_fragment_background">#20000000</color>
 
     <color name="donate_please_notpressed">#00ff00</color>
     <color name="donate_please_pressed">#00bb00</color>

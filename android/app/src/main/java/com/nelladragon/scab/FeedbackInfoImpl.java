@@ -1,3 +1,4 @@
+// Copyright (C) 2017 Peter Robinson and the Smart Contract Application Browser contributors.
 package com.nelladragon.scab;
 
 import android.content.Context;

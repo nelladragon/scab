@@ -23,7 +23,7 @@
         android:paddingEnd="@dimen/chronometer_padding_horizontal"
         android:paddingTop="@dimen/chronometer_padding_vertical"
         android:paddingBottom="@dimen/chronometer_padding_vertical"
-        android:background="@drawable/chronometer_background"
+        android:background="@drawable/main_fragment_background"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 

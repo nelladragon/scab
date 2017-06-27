@@ -12,12 +12,16 @@
     android:background="@drawable/scroll"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/element_app_bar"
-    tools:context=".DappActivity">
+    tools:context=".MainNavigationActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="64dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <!-- TODO get rid of absolute margin size -->
 
 </RelativeLayout>

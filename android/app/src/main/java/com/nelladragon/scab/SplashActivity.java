@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Peter Robinson
+// Copyright (C) 2017 Peter Robinson and the Smart Contract Application Browser contributors.
 package com.nelladragon.scab;
 
 import android.content.Intent;
@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //Log.i(LOG_TAG, "ending");
                 NonPersistentGlobalData.first = true;
-                startActivity(new Intent(SplashActivity.this, DappActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainNavigationActivity.class));
                 if (firstTimeRun) {
                     // Run the tutorial activity over the top of the main activity.
                     try {

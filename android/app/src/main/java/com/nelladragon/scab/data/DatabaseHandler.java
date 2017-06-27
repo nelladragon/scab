@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Peter Robinson
+// Copyright (C) 2017 Peter Robinson and the Smart Contract Application Browser contributors.
 package com.nelladragon.scab.data;
 
 import java.nio.charset.Charset;

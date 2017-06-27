@@ -27,17 +27,21 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     // Dependency for Google Sign-In
     //compile 'com.google.android.gms:play-services-identity:8.1.0'
+    //compile 'com.android.support:multidex:1.0.1'
+
+    // Change the version to the latest release
+
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'com.google.android.gms:play-services-auth:8.3.0'
-    //compile 'com.android.support:multidex:1.0.1'
-
+    compile 'org.ethereum:geth:1.5.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }
 
 

@@ -57,7 +57,7 @@
                 android:layout_marginTop="@dimen/settings_margin_vertical"
                 android:layout_below="@+id/seekBar"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/chronometer_background"
+                android:background="@drawable/main_fragment_background"
                 android:textSize="@dimen/text_size"/>
         </RelativeLayout>
 

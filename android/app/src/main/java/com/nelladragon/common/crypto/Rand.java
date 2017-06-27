@@ -1,4 +1,4 @@
-// Copyright (C) 2015 Peter Robinson
+// Copyright (C) 2017 Peter Robinson and the Smart Contract Application Browser contributors.
 package com.nelladragon.common.crypto;
 
 import java.security.SecureRandom;
