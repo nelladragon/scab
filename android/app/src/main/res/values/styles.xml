@@ -11,6 +11,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 
@@ -47,4 +48,22 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
+
+
+    <style name="Theme.MainActivity" parent="AppTheme.NoActionBar">
+        <item name="colorButtonNormal">@color/blue_grey_500</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+
+    <style name="Theme.MainActivity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/red</item>
+    </style>
+
+
+    <style name="Theme.MainActivity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/red</item>
+    </style>
+
 </resources>

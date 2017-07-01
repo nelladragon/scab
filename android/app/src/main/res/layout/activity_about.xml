@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.nelladragon.dodge.AboutActivity">
+    tools:context="com.nelladragon.common.AboutActivity">
 
     <include layout="@layout/element_app_bar_collapsing"/>
     <include layout="@layout/content_about" />

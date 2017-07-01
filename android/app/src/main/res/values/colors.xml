@@ -12,6 +12,7 @@
     <color name="blue">#0000ff</color>
     <color name="green">#00ff00</color>
     <color name="red">#ff0000</color>
+    <color name="darkred">#8b0000</color>
     <color name="transparent">#00ffffff</color>
     <color name="pinkish">#E0A0E0</color>
 

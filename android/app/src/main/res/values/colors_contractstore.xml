@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="contractstore_name">#000000</color>
+    <color name="contractstore_description">#000000</color>
+    <color name="contractstore_background">#A0ffffff</color>
+
+</resources>

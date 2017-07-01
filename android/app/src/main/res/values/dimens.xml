@@ -10,7 +10,6 @@
     <dimen name="button_text_size">80sp</dimen>
 
 
-    <dimen name="text_size_splash">40sp</dimen>
     <dimen name="title_size">40sp</dimen>
     <dimen name="button_margin">5dp</dimen>
     <dimen name="title_margin">5dp</dimen>

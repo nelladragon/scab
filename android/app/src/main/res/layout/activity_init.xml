@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:textSize="@dimen/text_size_splash"
+        android:textSize="@dimen/splash_title_text_size"
         android:textColor="@color/red"
         android:id="@+id/textViewAppName1"/>
 

@@ -13,7 +13,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,10 +23,10 @@
         </activity>
         <activity
             android:name=".MainNavigationActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/Theme.MainActivity"/>
         <activity
             android:name=".InitActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"

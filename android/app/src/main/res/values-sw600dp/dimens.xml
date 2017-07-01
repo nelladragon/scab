@@ -8,7 +8,7 @@
     <dimen name="button_text_size">120sp</dimen>
 
 
-    <dimen name="text_size_splash">60sp</dimen>
+    <dimen name="splash_title_text_size">60sp</dimen>
     <dimen name="title_size">60sp</dimen>
     <dimen name="text_size_large">120sp</dimen>
     <dimen name="text_size">40sp</dimen>
