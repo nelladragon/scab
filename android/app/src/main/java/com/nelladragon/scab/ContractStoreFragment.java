@@ -2,6 +2,7 @@
 package com.nelladragon.scab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ import java.util.List;
  * List of categories.
  *
  */
-public class AppStoreFragment extends Fragment {
+public class ContractStoreFragment extends Fragment {
 
     /**
      * Adapter class to allow data to be transferred from the list and the activity.
@@ -68,19 +69,19 @@ public class AppStoreFragment extends Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
             // A ViewHolder keeps references to children views to avoid unneccessary calls
             // to findViewById() on each row.
-            AppStoreFragment.ContractListAdapter.ViewHolder holder;
+            ContractStoreFragment.ContractListAdapter.ViewHolder holder;
 
             if (convertView == null) {
                 convertView = this.inflater.inflate(R.layout.list_item_contractstore, parent, false);
 
-                holder = new AppStoreFragment.ContractListAdapter.ViewHolder();
+                holder = new ContractStoreFragment.ContractListAdapter.ViewHolder();
                 holder.name = (TextView) convertView.findViewById(R.id.textViewContractName);
                 holder.image = (ImageView) convertView.findViewById(R.id.contractImage);
                 holder.description = (TextView) convertView.findViewById(R.id.textViewContractDescription);
 
                 convertView.setTag(holder);
             } else {
-                holder = (AppStoreFragment.ContractListAdapter.ViewHolder) convertView.getTag();
+                holder = (ContractStoreFragment.ContractListAdapter.ViewHolder) convertView.getTag();
             }
 
             StoreContract item = this.storeContracts.get(position);
@@ -95,7 +96,7 @@ public class AppStoreFragment extends Fragment {
 
 
     ListView listView;
-    AppStoreFragment.ContractListAdapter adapter;
+    ContractStoreFragment.ContractListAdapter adapter;
 
 //    List<UserProfile> storeContracts;
   //  UserController controller;
@@ -113,7 +114,7 @@ public class AppStoreFragment extends Fragment {
         StoreMain controller = StoreMain.getSingleInstance(appContext);
         this.contracts = controller.getStoreContracts();
 
-        this.adapter = new AppStoreFragment.ContractListAdapter(appContext, this.contracts);
+        this.adapter = new ContractStoreFragment.ContractListAdapter(appContext, this.contracts);
         this.listView = (ListView) rootView.findViewById(R.id.listViewChooseContract);
         this.listView.setAdapter(this.adapter);
 
@@ -121,6 +122,11 @@ public class AppStoreFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 StoreContract selected = contracts.get(position);
+
+
+                Intent i = new Intent(ContractStoreFragment.this.getContext(), ContractStoreDetailActivity.class);
+                i.putExtra(ContractStoreDetailActivity.APP_TO_VIEW, selected.getId().getId());
+                startActivityForResult(i, MainActivity.TAB_TO_VIEW);
 
                 // TODO: DO SOMETHING!
 //                SwitchProfileActivity.this.setResult(RESULT_OK);

@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //Log.i(LOG_TAG, "ending");
                 NonPersistentGlobalData.first = true;
-                startActivity(new Intent(SplashActivity.this, MainNavigationActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 if (firstTimeRun) {
                     // Run the tutorial activity over the top of the main activity.
                     try {

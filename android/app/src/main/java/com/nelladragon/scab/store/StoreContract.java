@@ -15,22 +15,44 @@ import java.util.List;
  */
 
 public class StoreContract {
+    // The maximum length of a contract name.
+    public static final int CONTRACT_NAME_MAX_LENGTH = 30;
 
 
     private List<StoreCategory> categories = new ArrayList<>();
 
     private Context appContext;
 
+    private String contractName;
 
-    private int id;
 
-    public StoreContract(Context appContext, int temp) {
+    private ContractId id;
+
+    public StoreContract(Context appContext) {
         this.appContext = appContext;
         this.categories.add(StoreCategory.UNCATEGORIZED);
-        this.id = temp;
+
+        // TODO the contract would have an id generated when it was deployed.
+        this.id = ContractId.generateRandomContractId();
+
+
+        String originalContractName = "Some Contract App " + this.id;
+        this.contractName= fixContractName(originalContractName);
     }
 
 
+    /**
+     * Limit the length of contract names. Limiting the length of
+     * contract names is done here, as well as when the contract is
+     * being authored, to ensure an attacker can't hack the GUI of the
+     * app such that it doesn't display correctly.
+     *
+     * @param originalName Name from the contract package.
+     * @return Processed name.
+     */
+    private static String fixContractName(String originalName){
+        return originalName.substring(0, CONTRACT_NAME_MAX_LENGTH);
+    }
 
 
 
@@ -46,18 +68,24 @@ public class StoreContract {
      */
     public Drawable getStoreListImage() {
 
-        int drawableId = UserPhotoUtilTemp.photoIdToDrawableId(this.id);
+        int drawableId = UserPhotoUtilTemp.photoIdToDrawableId(101);
         return ContextCompat.getDrawable(this.appContext, drawableId);
     }
 
 
     public String getName() {
-        return "Some Contract App" + this.id;
+        return this.contractName;
     }
 
     public String getStoreListDescription() {
-        return "A detailed description about some contract app." + this.id;
+        return "A detailed description about some contract app. " + this.id;
     }
+
+
+    public ContractId getId() {
+        return this.id;
+    }
+
 
 
 

@@ -50,7 +50,6 @@
     </style>
 
 
-
     <style name="Theme.MainActivity" parent="AppTheme.NoActionBar">
         <item name="colorButtonNormal">@color/blue_grey_500</item>
         <item name="android:textColor">@color/red</item>

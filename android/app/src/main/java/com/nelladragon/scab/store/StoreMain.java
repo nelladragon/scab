@@ -2,11 +2,13 @@ package com.nelladragon.scab.store;
 
 import android.content.Context;
 
+import com.nelladragon.scab.store.cache.StoreCache;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by sdn on 30/06/17.
+ * Main class to access contract store's cache and cloud services.
  */
 
 public class StoreMain {
@@ -15,9 +17,12 @@ public class StoreMain {
 
 
     private Context appContext;
+    private StoreCache cache;
 
     private StoreMain(Context appContext) {
         this.appContext = appContext;
+        this.cache = new StoreCache(this.appContext);
+
     }
 
 
@@ -34,15 +39,14 @@ public class StoreMain {
      * @return
      */
     public List<StoreContract> getStoreContracts() {
-        List<StoreContract> temp = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            temp.add(new StoreContract(this.appContext, i % 5));
-        }
-
-
-        return temp;
+        return this.cache.getAll();
     }
 
 
+
+
+    public StoreContract getContract(String contractId) {
+        return new StoreContract(this.appContext);
+    }
 
 }

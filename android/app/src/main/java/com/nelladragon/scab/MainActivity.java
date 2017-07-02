@@ -29,12 +29,18 @@ import com.nelladragon.scab.users.UserController;
 import com.nelladragon.scab.users.UserProfile;
 import com.viewpagerindicator.CirclePageIndicator;
 
-public class MainNavigationActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Values used for starting activities with a result.
     public static final int REQUEST_SETTINGS = 0;
     public static final int REQUEST_SWITCH = 1;
-    public static final int REQUEST_SWITCH_LEVEL = 2;
+    public static final int TAB_TO_VIEW = 2;
+
+    // Used with TAB_TO_VIEW
+    public static final int TAB_WALLET = 0;
+    public static final int TAB_MYCONTRACTS = TAB_WALLET + 1;
+    public static final int TAB_CONTRACTSTORE = TAB_MYCONTRACTS + 1;
 
     UserController controller;
     UserProfile currentProfile;
@@ -59,7 +65,7 @@ public class MainNavigationActivity extends AppCompatActivity
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private ViewPager viewPager;
 
     Typeface font;
 
@@ -78,9 +84,9 @@ public class MainNavigationActivity extends AppCompatActivity
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+        viewPager = (ViewPager) findViewById(R.id.container);
+        viewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
                 // do transformation here
@@ -91,7 +97,7 @@ public class MainNavigationActivity extends AppCompatActivity
         });
 
         CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.viewpagerindicator);
-        indicator.setViewPager(this.mViewPager);
+        indicator.setViewPager(this.viewPager);
 
 
     }
@@ -123,20 +129,20 @@ public class MainNavigationActivity extends AppCompatActivity
         this.iSwitchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(MainNavigationActivity.this, SwitchProfileActivity.class), REQUEST_SWITCH);
+                startActivityForResult(new Intent(MainActivity.this, SwitchProfileActivity.class), REQUEST_SWITCH);
             }
         });
         this.iAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 controller.addNewProfile();
-                startActivityForResult(new Intent(MainNavigationActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
+                startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
             }
         });
         this.userPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(MainNavigationActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
+                startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class), REQUEST_SETTINGS);
             }
         });
 
@@ -199,9 +205,9 @@ public class MainNavigationActivity extends AppCompatActivity
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private static final int WALLET = 0;
-        private static final int MYCONTRACTS = WALLET + 1;
-        private static final int CONTRACTSTORE = MYCONTRACTS + 1;
+        private static final int WALLET = TAB_WALLET;
+        private static final int MYCONTRACTS = TAB_MYCONTRACTS;
+        private static final int CONTRACTSTORE = TAB_CONTRACTSTORE;
         private static final int NUM_SCREENS = CONTRACTSTORE + 1;
 
 
@@ -217,7 +223,7 @@ public class MainNavigationActivity extends AppCompatActivity
                 case MYCONTRACTS:
                     return new MyContractsFragment();
                 case CONTRACTSTORE:
-                    return new AppStoreFragment();
+                    return new ContractStoreFragment();
                 default:
                     throw new Error("Unknown page: " + position);
             }
@@ -277,7 +283,9 @@ public class MainNavigationActivity extends AppCompatActivity
                     setupDrawerUI();
                 }
                 break;
-            case REQUEST_SWITCH_LEVEL:
+            case TAB_TO_VIEW:
+                // The result code is the tab to view.
+                this.viewPager.setCurrentItem(resultCode);
                 break;
 
             default:

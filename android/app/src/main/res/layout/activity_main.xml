@@ -14,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".MainNavigationActivity"
+        tools:context=".MainActivity"
         android:background="@drawable/scroll">
 
         <include layout="@layout/element_app_bar_main"/>
-        <include layout="@layout/content_dapp" />
+        <include layout="@layout/content_main" />
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/viewpagerindicator"
@@ -33,7 +33,6 @@
             app:pageColor="@color/white"
             app:snap="false"
             app:strokeColor="@color/darkred"/>
-        <!-- app:strokeColor="?attr/colorPrimaryDark   ?attr/colorPrimary" -->
 
     </android.support.design.widget.CoordinatorLayout>
 

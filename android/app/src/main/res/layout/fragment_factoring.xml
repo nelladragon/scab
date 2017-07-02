@@ -7,7 +7,7 @@
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
     android:background="@drawable/screen_background"
-    tools:context=".MainNavigationActivity">
+    tools:context=".MainActivity">
 
 
     <TextView
