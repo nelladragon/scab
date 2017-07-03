@@ -1,5 +1,0 @@
-<resources>
-    <string name="tutorial_intro">Welcome!</string>
-    <string name="tutorial_start">Touch here to start and stop the timer</string>
-    <string name="tutorial_menu">Touch here to open the menu</string>
-</resources>

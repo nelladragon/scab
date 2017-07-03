@@ -14,6 +14,7 @@ import android.support.design.widget.NavigationView;
         import android.support.v7.app.ActionBarDrawerToggle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
         import android.view.View;
         import android.view.ViewGroup;
@@ -318,6 +319,69 @@ public class MainActivity extends AppCompatActivity
     public void onResume() {
         super.onResume();
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_activity, menu);
+
+    //    // If there is only one profile, disable the Remove Profile option.
+      //  if (UserController.getInstance(this).userCount() == 1) {
+     //       MenuItem item = menu.getItem(2);
+       //     item.setEnabled(false);
+       // }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        UserController controller;
+        switch (id) {
+            case R.id.action_delete:
+               // controller = UserController.getInstance(this);
+              //  controller.deleteCurrentProfile();
+
+  //              if (controller.userCount() == 1) {
+    //                item.setEnabled(false);
+      //          }
+
+        //        setResult(RESULT_OK);
+          //      finish();
+                return true;
+
+            case R.id.action_add:
+                // Sync any changed settings.
+    //            controller = UserController.getInstance(this);
+      //          controller.syncActiveProfile();
+                // Add the new profile, changing the current profile.
+        //        controller.addNewProfile();
+                // Restart this activity, to force a re-load by all frames.
+//                startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
+                // Close this instance of this activity.
+  //              finish();
+                return true;
+
+            case R.id.action_switch:
+                // Sync any changed settings.
+          //      controller = UserController.getInstance(this);
+            //    controller.syncActiveProfile();
+
+                // Goto the switch activity
+              //  startActivity(new Intent(SettingsActivity.this, SwitchProfileActivity.class));
+
+                // Close this  activity.
+                //finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

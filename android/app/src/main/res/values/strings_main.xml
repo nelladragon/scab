@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="action_add_profile">Add Profile</string>
+    <string name="action_switch_profile">Switch Profile</string>
+    <string name="action_delete_profile">Remove Profile</string>
+
+    <!-- Menu for main activity -->
+    <string name="action_filter_blockchains">Filter Blockchains</string>
+    <string name="action_add_account">Add Account</string>
+
+
+    <string name="title_activity_shower_on">Shower Timer Talking</string>
+    <string name="title_activity_choose_language">Choose Language</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_contract_store_detail">Should be overwritten</string>
+
+
+
+</resources>
