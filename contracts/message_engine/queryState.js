@@ -5,7 +5,7 @@ var lightwallet = require('eth-lightwallet');
 var txutils = lightwallet.txutils;
 
 var web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
+    new Web3.providers.HttpProvider('https://rinkeby.infura.io/RN5ouaGxbPB4wrYNgM2Q')
 );
 
 var user1 = require('../../../user1')

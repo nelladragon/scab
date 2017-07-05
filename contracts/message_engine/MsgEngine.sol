@@ -6,7 +6,7 @@
 // encrypted against the recipients public key. Note that the messages themselves don't 
 // need to be signed as the transactions they are contained in are signed by the sender.
 //
-pragma solidity ^0.4.6;
+pragma solidity ^0.4.11;
 
 /** @title Message Engine */
 contract MsgEngine {
@@ -29,10 +29,13 @@ contract MsgEngine {
     // Throw an exception to roll-back the transaction if:
     // - the address.send method is called, to send ether to this account.
     // - a function is called which doesn't map to any function on the contract.
-    function() {throw;}
+   // function() {throw;}
   
+  
+  uint8 pro;
 
-    function MsgEngine() {
+    function MsgEngine(uint8 proposals) {
+        pro = proposals;
     }
   
 
@@ -123,9 +126,5 @@ contract MsgEngine {
     }
 
 }
-
-
-
-
 
 

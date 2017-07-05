@@ -5,11 +5,11 @@ var lightwallet = require('eth-lightwallet');
 var txutils = lightwallet.txutils;
 
 var web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rinkeby.infura.io/')
+    new Web3.providers.HttpProvider('https://rinkeby.infura.io/RN5ouaGxbPB4wrYNgM2Q')
 );
 
 
-var user1 = require('../../../user1')
+var user = require('../../../user2')
 var contract = require('./contract')
 
 /*
@@ -25,7 +25,7 @@ web3.eth.getGasPrice(function(err, result) {
 
 
 function sendRaw(rawTx) {
-    var privateKey = new Buffer(user1.key, 'hex');
+    var privateKey = new Buffer(user.key, 'hex');
     var transaction = new tx(rawTx);
     transaction.sign(privateKey);
     var serializedTx = transaction.serialize().toString('hex');
@@ -42,10 +42,12 @@ function sendRaw(rawTx) {
 
 
 var rawTx = {
-    nonce: web3.toHex(web3.eth.getTransactionCount(user1.address)),
+    nonce: web3.toHex(web3.eth.getTransactionCount(user.address)),
     gasLimit: web3.toHex(800000),
-    gasPrice: web3.toHex(200000000000),
-    data: '0x' + contract.bytecode
+//    gasPrice: web3.toHex(20000000000),
+    gasPrice: web3.toHex(50000000000),
+    data: '0x' + contract.bytecode + '0000000000000000000000000000000000000000000000000000000000000005'
+
 };
 
 
